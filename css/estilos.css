@@ -633,7 +633,6 @@ main {
 
 /* ==========================================================================
    6. SECCIÓN QUÉ HACEMOS (.seccion-servicios / #que-hacemos)
-   COMPOSICIÓN DE 3 CÍRCULOS ALINEADA AL MARGEN DE GALERÍA
    ========================================================================== */
 .seccion-servicios {
     position: relative;
@@ -992,6 +991,27 @@ main {
                 radial-gradient(circle at center, #FFD700 0%, #121414 80%);
 }
 
+/* Gradientes para Proyectos del Modal "VER MÁS" */
+.gradiente-proyecto-5 {
+    background: linear-gradient(135deg, rgba(156, 39, 176, 0.3) 0%, rgba(18, 20, 20, 0.95) 80%),
+                radial-gradient(circle at top right, #9C27B0 0%, #121414 70%);
+}
+
+.gradiente-proyecto-6 {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.25) 0%, rgba(18, 20, 20, 0.95) 80%),
+                radial-gradient(circle at bottom right, #4CAF50 0%, #121414 70%);
+}
+
+.gradiente-proyecto-7 {
+    background: linear-gradient(135deg, rgba(233, 30, 99, 0.25) 0%, rgba(18, 20, 20, 0.95) 80%),
+                radial-gradient(circle at top left, #E91E63 0%, #121414 70%);
+}
+
+.gradiente-proyecto-8 {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.3) 0%, rgba(18, 20, 20, 0.95) 80%),
+                radial-gradient(circle at bottom left, #FFC107 0%, #121414 70%);
+}
+
 .capa-superpuesta-galeria {
     position: relative;
     z-index: 2;
@@ -1024,6 +1044,36 @@ main {
 .descripcion-proyecto-galeria {
     font-size: 15px;
     color: var(--color-texto-variante);
+}
+
+/* Contenedor y Botón "VER MÁS" en Galería */
+.contenedor-boton-ver-mas {
+    display: flex;
+    justify-content: center;
+    margin-top: 36px;
+    width: 100%;
+}
+
+.boton-ver-mas-galeria {
+    padding: 16px 36px;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+}
+
+/* Personalización del Modal Flotante de Galería Extendida */
+.contenido-modal-galeria {
+    max-width: 960px;
+    padding: 44px;
+}
+
+.subtitulo-modal-galeria {
+    font-size: 16px;
+    color: var(--color-texto-variante);
+    margin-bottom: 32px;
+}
+
+.rejilla-modal-galeria {
+    margin-top: 20px;
 }
 
 /* ==========================================================================

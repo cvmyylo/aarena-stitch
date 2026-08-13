@@ -49,6 +49,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Modal Flotante de Galería Extendida ("VER MÁS PROYECTOS")
+    const botonAbrirGaleria = document.getElementById('abrirModalGaleria');
+    const modalGaleria = document.getElementById('modalGaleriaCompleta');
+    const botonCerrarGaleria = document.getElementById('cerrarModalGaleria');
+
+    if (botonAbrirGaleria && modalGaleria) {
+        botonAbrirGaleria.addEventListener('click', (e) => {
+            e.preventDefault();
+            modalGaleria.classList.add('abierto');
+        });
+    }
+
+    if (botonCerrarGaleria && modalGaleria) {
+        botonCerrarGaleria.addEventListener('click', () => {
+            modalGaleria.classList.remove('abierto');
+        });
+
+        modalGaleria.addEventListener('click', (e) => {
+            if (e.target === modalGaleria) {
+                modalGaleria.classList.remove('abierto');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalGaleria.classList.contains('abierto')) {
+                modalGaleria.classList.remove('abierto');
+            }
+        });
+    }
+
     // Modal de Política de Privacidad (Ley Chile N° 19.628)
     const botonPrivacidad = document.getElementById('abrirPrivacidad');
     const modalPrivacidad = document.getElementById('modalPrivacidad');

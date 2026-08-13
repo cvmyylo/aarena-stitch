@@ -348,7 +348,7 @@
         </section>
 
         <!-- ==========================================================================
-             4. SECCIÓN GALERÍA (#galeria) - TÍTULO EN MAYÚSCULA IMPONENTE "GALERÍA"
+             4. SECCIÓN GALERÍA (#galeria) - TÍTULO IMPONENTE Y BOTÓN "VER MÁS"
              ========================================================================== -->
         <section class="seccion-galeria" id="galeria">
             <div class="contenedor-principal">
@@ -398,6 +398,14 @@
                             </div>
                         </div>
                     </article>
+                </div>
+
+                <!-- Botón "VER MÁS" debajo de la última tarjeta -->
+                <div class="contenedor-boton-ver-mas">
+                    <button class="boton-cta boton-ver-mas-galeria" id="abrirModalGaleria">
+                        VER MÁS PROYECTOS
+                        <span class="material-symbols-outlined" aria-hidden="true">grid_view</span>
+                    </button>
                 </div>
             </div>
         </section>
@@ -526,6 +534,63 @@
             </div>
         </div>
     </footer>
+
+    <!-- ==========================================================================
+         MODAL FLOTANTE DE GALERÍA EXTENDIDA ("VER MÁS PROYECTOS")
+         ========================================================================== -->
+    <div class="modal-privacidad modal-galeria-flotante" id="modalGaleriaCompleta" aria-hidden="true" role="dialog" aria-labelledby="tituloModalGaleria">
+        <div class="contenido-modal-privacidad contenido-modal-galeria">
+            <button class="boton-cerrar-modal" id="cerrarModalGaleria" aria-label="Cerrar ventana de galería extendida">&times;</button>
+            <h3 class="titulo-modal" id="tituloModalGaleria">GALERÍA EXTENDIDA DE PROYECTOS</h3>
+            <p class="subtitulo-modal-galeria">Explora una selección más amplia de nuestros trabajos estratégicos en branding, editorial, marketing digital y trade marketing.</p>
+            
+            <div class="rejilla-galeria rejilla-modal-galeria">
+                <!-- Proyecto Extra 01 -->
+                <article class="tarjeta-galeria">
+                    <div class="imagen-galeria-placeholder gradiente-proyecto-5">
+                        <div class="capa-superpuesta-galeria">
+                            <span class="etiqueta-proyecto">Editorial & Catálogos</span>
+                            <h3 class="titulo-proyecto-galeria">Revista Luxus</h3>
+                            <p class="descripcion-proyecto-galeria">Diseño editorial de catálogo de moda boutique y alta costura.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Proyecto Extra 02 -->
+                <article class="tarjeta-galeria">
+                    <div class="imagen-galeria-placeholder gradiente-proyecto-6">
+                        <div class="capa-superpuesta-galeria">
+                            <span class="etiqueta-proyecto">Trade Marketing</span>
+                            <h3 class="titulo-proyecto-galeria">Pop-up Store Vinos del Valle</h3>
+                            <p class="descripcion-proyecto-galeria">Activación de marca en punto de venta y diseño de stand exhibidor.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Proyecto Extra 03 -->
+                <article class="tarjeta-galeria">
+                    <div class="imagen-galeria-placeholder gradiente-proyecto-7">
+                        <div class="capa-superpuesta-galeria">
+                            <span class="etiqueta-proyecto">Marketing Digital & RRSS</span>
+                            <h3 class="titulo-proyecto-galeria">Estrategia Redes NovaTech</h3>
+                            <p class="descripcion-proyecto-galeria">Generación de contenido orgánico y pauta publicitaria hipersegmentada.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Proyecto Extra 04 -->
+                <article class="tarjeta-galeria">
+                    <div class="imagen-galeria-placeholder gradiente-proyecto-8">
+                        <div class="capa-superpuesta-galeria">
+                            <span class="etiqueta-proyecto">Branding 360°</span>
+                            <h3 class="titulo-proyecto-galeria">Arquitectura Norte</h3>
+                            <p class="descripcion-proyecto-galeria">Identidad corporativa integral, papelería de lujo y sitio web corporativo.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
 
     <!-- ==========================================================================
          MODAL DE POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS (Ley Chile N° 19.628)
