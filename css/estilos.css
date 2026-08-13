@@ -1046,7 +1046,7 @@ main {
     color: var(--color-texto-variante);
 }
 
-/* Contenedor y Botón "VER MÁS" Alineado a la Derecha */
+/* Contenedor y Botón de Texto "VER MÁS PROYECTOS" (Estilo puro de tipografía amarilla con resalte) */
 .contenedor-boton-ver-mas {
     display: flex;
     justify-content: flex-end;
@@ -1054,10 +1054,32 @@ main {
     width: 100%;
 }
 
-.boton-ver-mas-galeria {
-    padding: 16px 36px;
-    font-size: 15px;
-    letter-spacing: 0.08em;
+.boton-ver-mas-texto {
+    background: transparent;
+    border: none;
+    font-family: var(--fuente-cuerpo);
+    font-size: 17px;
+    font-weight: 800;
+    color: #FFDD00;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: right;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                color 0.3s ease, 
+                text-shadow 0.3s ease;
+}
+
+.boton-ver-mas-texto:hover {
+    color: #FFFFFF;
+    transform: translateX(-10px) scale(1.05);
+    text-shadow: 0 0 16px rgba(255, 221, 0, 0.85);
+}
+
+.boton-ver-mas-texto:active {
+    transform: translateX(-4px) scale(0.98);
 }
 
 /* Personalización del Modal Flotante de Galería Extendida */
