@@ -1046,10 +1046,10 @@ main {
     color: var(--color-texto-variante);
 }
 
-/* Contenedor y Botón "VER MÁS" en Galería */
+/* Contenedor y Botón "VER MÁS" Alineado a la Derecha */
 .contenedor-boton-ver-mas {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     margin-top: 36px;
     width: 100%;
 }
