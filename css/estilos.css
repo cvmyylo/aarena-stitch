@@ -637,6 +637,7 @@ main {
 
 /* ==========================================================================
    6. SECCIÓN QUÉ HACEMOS (.seccion-servicios / #que-hacemos)
+   COMPOSICIÓN DE 3 CÍRCULOS ALINEADA AL MARGEN DE GALERÍA
    ========================================================================== */
 .seccion-servicios {
     position: relative;
@@ -741,7 +742,7 @@ main {
 
 .columna-circulos-hacemos {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -791,7 +792,7 @@ main {
     .circulo-360 {
         position: absolute;
         top: -35px;
-        left: 85px;
+        left: 155px;
         width: 320px;
         height: 320px;
         padding: 24px 24px 75px 24px;
@@ -815,7 +816,7 @@ main {
     color: #121414;
 }
 
-/* Círculo 2: Diseño y Publicidad (Amarillo - Abajo Izquierda) */
+/* Círculo 2: Diseño y Publicidad (Amarillo - Abajo Izquierda, Alineado al Margen con Galería) */
 .circulo-diseno {
     background-color: #FFDD00;
     color: #121414;
@@ -828,7 +829,7 @@ main {
     .circulo-diseno {
         position: absolute;
         top: 140px;
-        left: -115px;
+        left: -45px;
         right: auto;
         width: 365px;
         height: 365px;
@@ -868,7 +869,7 @@ main {
     .circulo-rrss {
         position: absolute;
         top: 140px;
-        left: 245px;
+        left: 315px;
         right: auto;
         width: 375px;
         height: 375px;
