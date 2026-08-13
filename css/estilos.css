@@ -1,0 +1,1457 @@
+@import url('./variables.css');
+
+/* ==========================================================================
+   1. RESET Y ESTILOS BASE (MOBILE-FIRST)
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--color-fondo);
+    color: var(--color-texto-secundario);
+    font-family: var(--fuente-cuerpo);
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background-color: transparent; /* Permite ver el fondo fijo unificado */
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enfoque para Accesibilidad (Focus Visible) */
+:focus-visible {
+    outline: 2px solid var(--color-primario);
+    outline-offset: 4px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* Contenedor Principal Limitado */
+.contenedor-principal {
+    width: 100%;
+    max-width: var(--ancho-maximo-contenedor);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--margen-movil);
+    padding-right: var(--margen-movil);
+}
+
+@media (min-width: 768px) {
+    .contenedor-principal {
+        padding-left: var(--margen-escritorio);
+        padding-right: var(--margen-escritorio);
+    }
+}
+
+/* ==========================================================================
+   FONDO GLOBAL FIJO / ESTÁTICO UNIFICADO (Todas las secciones EXCEPTO el Footer)
+   ========================================================================== */
+.fondo-global-fijo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    background-color: var(--color-fondo);
+    background-image: url('../img/fondo-agenciarena.svg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    opacity: 0.95;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   2. NAVEGACIÓN Y CABECERA (.cabecera-principal) - NAVBAR ALINEADO A LA DERECHA
+   ========================================================================== */
+.cabecera-principal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(18, 20, 20, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--color-borde-suave);
+    overflow: visible;
+}
+
+.contenedor-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px; /* Navbar achicado 10% */
+}
+
+@media (min-width: 768px) {
+    .contenedor-cabecera {
+        height: 94px; /* Navbar achicado 10% */
+    }
+}
+
+.bloque-marca {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.boton-menu-movil {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--color-texto-variante);
+    cursor: pointer;
+    padding: 8px;
+    transition: color var(--transicion-rapida);
+}
+
+.boton-menu-movil:hover {
+    color: var(--color-primario);
+}
+
+@media (min-width: 768px) {
+    .boton-menu-movil {
+        display: none;
+    }
+}
+
+/* Enlace/Botón Interactivo del Logotipo hacia el Inicio */
+.logotipo-enlace {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    transition: transform var(--transicion-rapida), opacity var(--transicion-rapida);
+}
+
+.logotipo-enlace:hover {
+    transform: scale(1.03);
+    opacity: 0.95;
+}
+
+.logotipo-enlace:active {
+    transform: scale(0.97);
+}
+
+/* Logotipo Oficial AgenciArena */
+.imagen-logotipo {
+    height: 86px;
+    width: auto;
+    object-fit: contain;
+}
+
+@media (min-width: 768px) {
+    .imagen-logotipo {
+        height: 118px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .imagen-logotipo {
+        height: 138px;
+    }
+}
+
+/* Navegación Escritorio Alineada a la Derecha Respetando Márgenes */
+.navegacion-escritorio {
+    display: none;
+    align-items: center;
+    gap: 24px;
+    margin-left: auto;
+}
+
+@media (min-width: 992px) {
+    .navegacion-escritorio {
+        display: flex;
+        gap: 36px;
+    }
+}
+
+.enlace-navegacion {
+    font-family: var(--fuente-cuerpo);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-texto-variante);
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color var(--transicion-rapida), border-color var(--transicion-rapida);
+    white-space: nowrap;
+}
+
+@media (min-width: 1024px) {
+    .enlace-navegacion {
+        font-size: 14px;
+    }
+}
+
+.enlace-navegacion:hover,
+.enlace-navegacion.activo {
+    color: var(--color-primario);
+    border-color: var(--color-primario);
+}
+
+/* Menú Móvil Desplegable */
+.menu-movil-desplegable {
+    display: none;
+    flex-direction: column;
+    background-color: var(--color-superficie);
+    border-bottom: 1px solid var(--color-superficie-borde);
+    padding: 20px var(--margen-movil);
+    gap: 16px;
+}
+
+.menu-movil-desplegable.abierto {
+    display: flex;
+}
+
+@media (min-width: 992px) {
+    .menu-movil-desplegable {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   3. BOTONES Y ACCIONES (.boton-cta)
+   ========================================================================== */
+.boton-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: var(--color-primario);
+    color: var(--color-texto-sobre-primario);
+    font-family: var(--fuente-cuerpo);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border-radius: var(--radio-borde);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(255, 215, 0, 0.15);
+    transition: transform var(--transicion-rapida), background-color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+}
+
+.boton-cta:hover {
+    background-color: var(--color-primario-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-primaria);
+}
+
+.boton-cta:active {
+    transform: translateY(0);
+}
+
+.boton-cta-secundario {
+    background-color: transparent;
+    color: var(--color-texto-primario);
+    border: 1px solid var(--color-borde);
+    box-shadow: none;
+}
+
+.boton-cta-secundario:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-primario);
+    color: var(--color-primario);
+}
+
+/* ==========================================================================
+   4. SECCIÓN HÉROE (.seccion-heroe)
+   ========================================================================== */
+.seccion-heroe {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 200px;
+    padding-bottom: 120px;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+/* Resplandor Dorado Atmosférico Difuminado */
+.resplandor-heroe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 75% 35%, rgba(255, 215, 0, 0.10) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Bloque de Texto e Interacción del Héroe con Animación Entrada */
+.contenido-heroe {
+    position: relative;
+    z-index: 10;
+    max-width: 860px;
+    margin-top: 90px;
+    animation: entradaTexto 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    will-change: transform, opacity;
+}
+
+@media (min-width: 768px) {
+    .contenido-heroe {
+        margin-top: 130px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .contenido-heroe {
+        margin-top: 160px;
+    }
+}
+
+@keyframes entradaTexto {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.titulo-heroe {
+    font-family: var(--fuente-titulos);
+    font-size: 36px;
+    line-height: 1.1;
+    font-weight: 800;
+    color: var(--color-texto-primario);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+    .titulo-heroe {
+        font-size: 64px;
+        line-height: 1.1;
+    }
+}
+
+@media (min-width: 1024px) {
+    .titulo-heroe {
+        font-size: 72px;
+        line-height: 80px;
+    }
+}
+
+.texto-resaltado-primario {
+    color: var(--color-primario);
+    display: block;
+}
+
+.subtitulo-heroe {
+    font-family: var(--fuente-titulos);
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+    color: var(--color-texto-variante);
+    margin-bottom: 40px;
+    letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+    .subtitulo-heroe {
+        font-size: 36px;
+        line-height: 44px;
+    }
+}
+
+/* ==========================================================================
+   5. SECCIÓN QUIÉNES SOMOS (.seccion-enfoque / #quienes-somos)
+   ========================================================================== */
+.seccion-enfoque {
+    position: relative;
+    z-index: 2;
+    min-height: calc(100vh - 94px);
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 120px;
+    scroll-margin-top: 94px;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+.fondo-halftone-quienes-somos {
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    width: 100%;
+    height: 380px;
+    background-image: url('../img/fondo-agenciarena.svg');
+    background-size: cover;
+    background-position: bottom center;
+    opacity: 0.85;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.rejilla-quienes-somos-diseno {
+    position: relative;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    .rejilla-quienes-somos-diseno {
+        grid-template-columns: 240px 1fr;
+        gap: 40px;
+        align-items: center;
+    }
+}
+
+.columna-titulo-somos {
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-somos {
+    font-family: var(--fuente-titulos);
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 0.95;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+    .titulo-somos {
+        font-size: 80px;
+    }
+}
+
+.columna-composicion-somos {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    .columna-composicion-somos {
+        justify-content: flex-end;
+    }
+}
+
+/* Círculo Gigante Amarillo que alberga a Pamela, Andrés y el Manifiesto */
+.circulo-gigante-somos {
+    position: relative;
+    background-color: #FFDD00;
+    color: #121414;
+    width: 100%;
+    max-width: 780px;
+    border-radius: var(--radio-borde-xl);
+    padding: 48px 36px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width: 992px) {
+    .circulo-gigante-somos {
+        width: 780px;
+        height: 780px;
+        border-radius: 50%;
+        margin-right: -100px;
+        padding-left: 130px;
+        padding-right: 80px;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+/* Círculos Grises de Avatar/Equipo Superpuestos exactamente en el borde izquierdo */
+.circulo-gris-equipo {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .circulo-gris-equipo {
+        display: block;
+        position: absolute;
+        width: 210px;
+        height: 210px;
+        border-radius: 50%;
+        background-color: #7E7E7E;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+        z-index: 4;
+    }
+
+    .circulo-gris-top {
+        top: 70px;
+        left: -105px;
+    }
+
+    .circulo-gris-bottom {
+        bottom: 70px;
+        left: -105px;
+    }
+}
+
+/* Layout del Contenido Interno (Equipo a la izquierda, Manifiesto a la derecha) */
+.contenido-interno-somos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    .contenido-interno-somos {
+        grid-template-columns: 240px 1fr;
+        gap: 36px;
+        align-items: center;
+    }
+}
+
+.bloque-equipo-somos {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.tarjeta-miembro-somos {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.nombre-miembro-somos {
+    font-family: var(--fuente-cuerpo);
+    font-size: 16px;
+    color: #121414;
+    line-height: 1.3;
+    font-weight: 400;
+}
+
+.nombre-miembro-somos strong {
+    font-weight: 800;
+}
+
+.cargo-miembro-somos {
+    font-size: 15px;
+    color: #2A2A2A;
+    font-weight: 400;
+}
+
+.email-miembro-somos {
+    font-size: 15px;
+    color: #121414;
+    font-weight: 800;
+    text-decoration: none;
+    word-break: break-all;
+    transition: opacity var(--transicion-rapida);
+}
+
+.email-miembro-somos:hover {
+    opacity: 0.8;
+}
+
+.ubicacion-miembro-somos {
+    font-size: 15px;
+    color: #121414;
+    font-weight: 800;
+}
+
+.bloque-manifiesto-somos {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.parrafo-somos {
+    font-size: 16px;
+    line-height: 1.45;
+    font-weight: 500;
+    color: #121414;
+}
+
+@media (min-width: 768px) {
+    .parrafo-somos {
+        font-size: 17px;
+        line-height: 1.42;
+    }
+}
+
+.parrafo-somos-destacado {
+    font-size: 17px;
+    line-height: 1.45;
+    font-weight: 700;
+    color: #121414;
+    margin-top: 18px;
+}
+
+@media (min-width: 768px) {
+    .parrafo-somos-destacado {
+        font-size: 18px;
+    }
+}
+
+/* ==========================================================================
+   6. SECCIÓN QUÉ HACEMOS (.seccion-servicios / #que-hacemos)
+   ========================================================================== */
+.seccion-servicios {
+    position: relative;
+    z-index: 2;
+    min-height: calc(100vh - 94px);
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    scroll-margin-top: 94px;
+    background-color: transparent;
+    border-top: none;
+    overflow: hidden;
+}
+
+.rejilla-que-hacemos {
+    position: relative;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    .rejilla-que-hacemos {
+        grid-template-columns: 630px 1fr;
+        gap: 40px;
+        align-items: center;
+    }
+}
+
+.columna-capacidades {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    width: 100%;
+}
+
+.titulo-hacemos {
+    font-family: var(--fuente-titulos);
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 0.95;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+    text-align: right;
+}
+
+@media (min-width: 768px) {
+    .titulo-hacemos {
+        font-size: 80px;
+    }
+}
+
+.lista-capacidades {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-end;
+    text-align: right;
+    width: 100%;
+}
+
+.lista-capacidades li {
+    text-align: right;
+    width: 100%;
+}
+
+/* Botón/Enlace Interactivo de Capacidades con Animación al Pasar el Mouse */
+.enlace-capacidad {
+    display: inline-block;
+    font-family: var(--fuente-cuerpo);
+    font-size: 17px;
+    font-weight: 800;
+    color: #FFDD00;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: right;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    padding-right: 0;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                color 0.3s ease, 
+                text-shadow 0.3s ease;
+}
+
+.enlace-capacidad:hover {
+    color: #FFFFFF;
+    transform: translateX(-10px) scale(1.05);
+    text-shadow: 0 0 16px rgba(255, 221, 0, 0.85);
+}
+
+.enlace-capacidad:active {
+    transform: translateX(-4px) scale(0.98);
+}
+
+.columna-circulos-hacemos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-circulos-interactivos {
+    position: relative;
+    width: 100%;
+    max-width: 630px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+@media (min-width: 992px) {
+    .contenedor-circulos-interactivos {
+        height: 540px;
+        display: block;
+    }
+}
+
+.circulo-hacemos {
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    transition: transform var(--transicion-normal), box-shadow var(--transicion-normal);
+}
+
+.circulo-hacemos:hover {
+    transform: scale(1.04);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+}
+
+/* Círculo 1: 360° (Blanco - Arriba Centro) */
+.circulo-360 {
+    background-color: #FFFFFF;
+    color: #121414;
+    width: 300px;
+    height: 300px;
+    padding: 32px 24px;
+}
+
+@media (min-width: 992px) {
+    .circulo-360 {
+        position: absolute;
+        top: -35px;
+        left: 85px;
+        width: 320px;
+        height: 320px;
+        padding: 24px 24px 75px 24px;
+        z-index: 3;
+    }
+}
+
+.circulo-360 .titulo-circulo-hacemos {
+    font-family: var(--fuente-cuerpo);
+    font-size: 38px;
+    font-weight: 300;
+    margin-bottom: 8px;
+    color: #121414;
+}
+
+.circulo-360 .texto-circulo-hacemos {
+    font-size: 13.5px;
+    line-height: 1.35;
+    font-weight: 600;
+    max-width: 200px;
+    color: #121414;
+}
+
+/* Círculo 2: Diseño y Publicidad (Amarillo - Abajo Izquierda) */
+.circulo-diseno {
+    background-color: #FFDD00;
+    color: #121414;
+    width: 320px;
+    height: 320px;
+    padding: 32px 24px;
+}
+
+@media (min-width: 992px) {
+    .circulo-diseno {
+        position: absolute;
+        top: 140px;
+        left: -115px;
+        right: auto;
+        width: 365px;
+        height: 365px;
+        padding: 40px 30px;
+        z-index: 4;
+    }
+}
+
+.circulo-diseno .titulo-circulo-hacemos {
+    font-family: var(--fuente-cuerpo);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 14px;
+    color: #121414;
+}
+
+.circulo-diseno .texto-circulo-hacemos {
+    font-size: 13.5px;
+    line-height: 1.35;
+    font-weight: 600;
+    max-width: 240px;
+    color: #121414;
+}
+
+/* Círculo 3: RRSS (Oscuro - Abajo Derecha) */
+.circulo-rrss {
+    background-color: #121414;
+    color: #FFFFFF;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    width: 320px;
+    height: 320px;
+    padding: 32px 24px;
+}
+
+@media (min-width: 992px) {
+    .circulo-rrss {
+        position: absolute;
+        top: 140px;
+        left: 245px;
+        right: auto;
+        width: 375px;
+        height: 375px;
+        padding: 40px 35px 40px 50px;
+        z-index: 2;
+    }
+}
+
+.circulo-rrss .titulo-circulo-hacemos {
+    font-family: var(--fuente-cuerpo);
+    font-size: 34px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+}
+
+.circulo-rrss .texto-circulo-hacemos {
+    font-size: 13.5px;
+    line-height: 1.38;
+    font-weight: 400;
+    max-width: 250px;
+    color: #E0E0E0;
+}
+
+/* ==========================================================================
+   7. SECCIÓN GALERÍA / PORTAFOLIO CREATIVO (.seccion-galeria / #galeria)
+   ========================================================================== */
+.seccion-galeria {
+    position: relative;
+    z-index: 2;
+    min-height: calc(100vh - 94px);
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    scroll-margin-top: 94px;
+    border-top: none;
+    background-color: transparent;
+}
+
+.titulo-seccion-galeria {
+    font-family: var(--fuente-titulos);
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 0.95;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 36px;
+}
+
+@media (min-width: 768px) {
+    .titulo-seccion-galeria {
+        font-size: 80px;
+    }
+}
+
+.rejilla-galeria {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .rejilla-galeria {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.tarjeta-galeria {
+    position: relative;
+    border-radius: var(--radio-borde-xl);
+    overflow: hidden;
+    background-color: rgba(24, 26, 26, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--color-superficie-borde);
+    height: 320px;
+    transition: transform var(--transicion-normal), border-color var(--transicion-normal);
+}
+
+.tarjeta-galeria:hover {
+    transform: translateY(-6px);
+    border-color: var(--color-primario);
+}
+
+@media (min-width: 992px) {
+    .tarjeta-galeria-destacada {
+        grid-column: span 2;
+        height: 400px;
+    }
+    .tarjeta-galeria-ancha {
+        grid-column: span 2;
+        height: 340px;
+    }
+}
+
+.imagen-galeria-placeholder {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 32px;
+}
+
+.gradiente-proyecto-1 {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(18, 20, 20, 0.95) 80%),
+                radial-gradient(circle at top left, #FFD700 0%, #121414 70%);
+}
+
+.gradiente-proyecto-2 {
+    background: linear-gradient(135deg, rgba(0, 184, 212, 0.2) 0%, rgba(18, 20, 20, 0.95) 80%),
+                radial-gradient(circle at top right, #00B8D4 0%, #121414 70%);
+}
+
+.gradiente-proyecto-3 {
+    background: linear-gradient(135deg, rgba(255, 61, 0, 0.2) 0%, rgba(18, 20, 20, 0.95) 80%),
+                radial-gradient(circle at bottom left, #FF3D00 0%, #121414 70%);
+}
+
+.gradiente-proyecto-4 {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(18, 20, 20, 0.95) 80%),
+                radial-gradient(circle at center, #FFD700 0%, #121414 80%);
+}
+
+.capa-superpuesta-galeria {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.etiqueta-proyecto {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primario);
+    background-color: rgba(18, 20, 20, 0.7);
+    padding: 6px 14px;
+    border-radius: var(--radio-borde);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.titulo-proyecto-galeria {
+    font-family: var(--fuente-titulos);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-texto-primario);
+}
+
+.descripcion-proyecto-galeria {
+    font-size: 15px;
+    color: var(--color-texto-variante);
+}
+
+/* ==========================================================================
+   8. SECCIÓN DE CAPTACIÓN DE LEADS / FORMULARIO (.seccion-contacto / #contacto)
+   ========================================================================== */
+.seccion-contacto {
+    position: relative;
+    z-index: 2;
+    min-height: calc(100vh - 94px);
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    scroll-margin-top: 94px;
+    border-top: none;
+    background-color: transparent;
+}
+
+.contenedor-formulario-contacto {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    .contenedor-formulario-contacto {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+}
+
+.informacion-contacto h2 {
+    font-family: var(--fuente-titulos);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 44px;
+    color: var(--color-texto-primario);
+    margin-bottom: 20px;
+}
+
+.informacion-contacto p {
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--color-texto-variante);
+    margin-bottom: 32px;
+}
+
+.lista-garantias {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.item-garantia {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-texto-secundario);
+}
+
+.icono-garantia {
+    color: var(--color-primario);
+}
+
+.formulario-lead {
+    background-color: rgba(24, 26, 26, 0.92);
+    backdrop-filter: blur(12px);
+    padding: 32px;
+    border-radius: var(--radio-borde-xl);
+    border: 1px solid var(--color-superficie-borde);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.grupo-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.etiqueta-campo {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-texto-variante);
+}
+
+.entrada-texto,
+.entrada-seleccion,
+.entrada-textarea {
+    width: 100%;
+    background-color: rgba(18, 20, 20, 0.85);
+    border: 1px solid var(--color-superficie-borde);
+    color: var(--color-texto-primario);
+    padding: 14px 16px;
+    border-radius: var(--radio-borde-md);
+    font-size: 16px;
+    transition: border-color var(--transicion-rapida);
+}
+
+.entrada-texto:focus,
+.entrada-seleccion:focus,
+.entrada-textarea:focus {
+    border-color: var(--color-primario);
+    outline: none;
+}
+
+.entrada-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* ==========================================================================
+   9. PIE DE PÁGINA (.pie-pagina) - CON FONDO SÓLIDO PROPIO
+   ========================================================================== */
+.pie-pagina {
+    position: relative;
+    z-index: 10;
+    background-color: var(--color-fondo-profundo); /* Oculta el fondo fijo global al llegar al footer */
+    padding-top: 64px;
+    padding-bottom: 64px;
+    border-top: 1px solid var(--color-borde-suave);
+}
+
+.fila-superior-pie {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+@media (min-width: 768px) {
+    .fila-superior-pie {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+}
+
+.bloque-marca-pie {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.imagen-logotipo-pie {
+    height: 100px;
+    width: auto;
+    object-fit: contain;
+}
+
+.texto-derechos {
+    font-size: 14px;
+    color: var(--color-texto-atenuado);
+    line-height: 1.4;
+    max-width: 480px;
+}
+
+.columna-navegacion-pie {
+    display: flex;
+    justify-content: flex-start;
+    align-self: flex-end;
+    padding-bottom: 2px;
+}
+
+@media (min-width: 768px) {
+    .columna-navegacion-pie {
+        justify-content: flex-end;
+    }
+}
+
+/* Navegación Horizontal Alineada a la Derecha Justo Arriba de la Línea Separadora */
+.navegacion-pie {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .navegacion-pie {
+        justify-content: flex-end;
+        gap: 28px;
+    }
+}
+
+.enlace-pie {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-texto-variante);
+    transition: color var(--transicion-rapida);
+    white-space: nowrap;
+}
+
+.enlace-pie:hover {
+    color: var(--color-primario);
+}
+
+/* Línea suave de separación superior */
+.linea-separadora-pie {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.08);
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+/* Dirección y Liderazgo Horizontal (Diseño Smooth, Pequeño, Transparente y sin Amarillo) */
+.seccion-liderazgo-horizontal {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    opacity: 0.82;
+    transition: opacity var(--transicion-rapida);
+}
+
+.seccion-liderazgo-horizontal:hover {
+    opacity: 1;
+}
+
+@media (min-width: 768px) {
+    .seccion-liderazgo-horizontal {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.titulo-liderazgo {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    white-space: nowrap;
+}
+
+.lista-lideres-horizontal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (min-width: 768px) {
+    .lista-lideres-horizontal {
+        flex-direction: row;
+        align-items: center;
+        gap: 24px;
+    }
+}
+
+.item-lider {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+@media (min-width: 992px) {
+    .item-lider {
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+    }
+}
+
+.nombre-director {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 13px;
+    letter-spacing: 0.01em;
+}
+
+.cargo-director {
+    color: rgba(255, 255, 255, 0.42);
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.separador-lider {
+    display: none;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+@media (min-width: 768px) {
+    .separador-lider {
+        display: block;
+    }
+}
+
+/* ==========================================================================
+   10. MODAL DE POLÍTICA DE PRIVACIDAD (Ley N° 19.628 - Chile)
+   ========================================================================== */
+.modal-privacidad {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    background-color: rgba(18, 20, 20, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.modal-privacidad.abierto {
+    display: flex;
+}
+
+.contenido-modal-privacidad {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-superficie-borde);
+    border-radius: var(--radio-borde-xl);
+    max-width: 680px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 36px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    color: var(--color-texto-secundario);
+}
+
+.boton-cerrar-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: var(--color-texto-variante);
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color var(--transicion-rapida);
+}
+
+.boton-cerrar-modal:hover {
+    color: var(--color-primario);
+}
+
+.titulo-modal {
+    font-family: var(--fuente-titulos);
+    font-size: 26px;
+    color: var(--color-texto-primario);
+    margin-bottom: 20px;
+    padding-right: 32px;
+}
+
+.cuerpo-modal h4 {
+    color: var(--color-primario);
+    font-size: 16px;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cuerpo-modal p, .cuerpo-modal li {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-texto-variante);
+}
+
+.cuerpo-modal ul {
+    margin-left: 20px;
+    margin-bottom: 16px;
+}
+
+/* ==========================================================================
+   11. BOTÓN FLOTANTE DE WHATSAPP (.boton-flotante-whatsapp)
+   ========================================================================== */
+.boton-flotante-whatsapp {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #25D366;
+    color: #ffffff;
+    padding: 14px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    transition: all var(--transicion-normal);
+    overflow: hidden;
+    width: 56px;
+    height: 56px;
+    text-decoration: none;
+}
+
+.boton-flotante-whatsapp:hover {
+    width: 250px;
+    background-color: #128C7E;
+    box-shadow: 0 14px 30px rgba(37, 211, 102, 0.3);
+}
+
+.icono-whatsapp {
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+.texto-whatsapp {
+    white-space: nowrap;
+    opacity: 0;
+    font-size: 14px;
+    font-weight: 700;
+    transition: opacity 0.2s ease 0.1s;
+}
+
+.boton-flotante-whatsapp:hover .texto-whatsapp {
+    opacity: 1;
+}

@@ -1,0 +1,53 @@
+/* ==========================================================================
+   AGENCIARENA - VARIABLES DEL SISTEMA DE DISEÑO (DESIGN TOKENS)
+   Basado estrictamente en DESIGN.md
+   ========================================================================== */
+:root {
+    /* Paleta de Colores (Modo Oscuro de Alto Contraste) */
+    --color-fondo: #121414;
+    --color-fondo-profundo: #0d0e0f;
+    --color-superficie: #1e2020;
+    --color-superficie-borde: #292a2a;
+    --color-superficie-elevada: #343535;
+    --color-superficie-brillante: #383939;
+    
+    /* Colores de Marca y Acción */
+    --color-primario: #ffd700;          /* Amarillo Arena */
+    --color-primario-hover: #e9c400;
+    --color-texto-sobre-primario: #1c1b1b;
+    --color-terciario: #00f1ff;         /* Cian de Acento */
+    --color-error: #ffb4ab;
+    
+    /* Tipografía y Textos */
+    --color-texto-primario: #ffffff;
+    --color-texto-secundario: #e3e2e2;
+    --color-texto-variante: #d0c6ab;
+    --color-texto-atenuado: rgba(227, 226, 226, 0.6);
+    --color-borde: #4d4732;
+    --color-borde-suave: rgba(153, 144, 119, 0.25);
+    
+    /* Tipografías Nativas */
+    --fuente-titulos: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    
+    /* Bordes Suaves (Shape System: 0.25rem DEFAULT) */
+    --radio-borde-sm: 0.125rem;
+    --radio-borde: 0.25rem;
+    --radio-borde-md: 0.375rem;
+    --radio-borde-lg: 0.5rem;
+    --radio-borde-xl: 0.75rem;
+    --radio-borde-completo: 9999px;
+    
+    /* Espaciado y Rejilla */
+    --ancho-maximo-contenedor: 1280px;
+    --margen-movil: 20px;
+    --margen-escritorio: 64px;
+    --espacio-base: 8px;
+    --espacio-gutter: 24px;
+    
+    /* Transiciones y Sombras */
+    --transicion-rapida: 200ms ease;
+    --transicion-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --sombra-elevacion: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    --sombra-primaria: 0 12px 32px -8px rgba(255, 215, 0, 0.25);
+}
